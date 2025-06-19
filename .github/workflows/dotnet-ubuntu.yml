@@ -38,7 +38,7 @@ jobs:
     
     - name: Remove unused platforms
       run: - name: Remove unused platforms
-    run: |
+      run: |
     	if [ -d "UABEAvalonia/bin/Release/net8.0/runtimes" ]; then
       	find UABEAvalonia/bin/Release/net8.0/runtimes/ -maxdepth 0 ! -name linux-x64 -type d -exec rm -r {} +
   	  else
