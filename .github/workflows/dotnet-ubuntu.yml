@@ -37,7 +37,13 @@ jobs:
       run: find UABEAvalonia/bin/Release/net8.0/ -name libunigwrap.so -type f -exec cp {} ./publish \;
     
     - name: Remove unused platforms
-      run: find UABEAvalonia/bin/Release/net8.0/runtimes/ -maxdepth 0 ! -name linux-x64 -type d -exec rm -r {} +
+      run: - name: Remove unused platforms
+  run: |
+    if [ -d "UABEAvalonia/bin/Release/net8.0/runtimes" ]; then
+      find UABEAvalonia/bin/Release/net8.0/runtimes/ -maxdepth 0 ! -name linux-x64 -type d -exec rm -r {} +
+    else
+      echo "Folder runtimes/ tidak ditemukan. Lewat."
+    fi
       
     - name: Upload
       uses: actions/upload-artifact@v4
