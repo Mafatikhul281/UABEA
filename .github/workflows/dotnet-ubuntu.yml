@@ -25,7 +25,7 @@ jobs:
       run: dotnet sln UABEAvalonia.sln remove TexToolWrap/TexToolWrap.vcxproj
     
     - name: Clean
-		 run: dotnet clean
+      run: dotnet clean
 
     - name: Restore
       run: dotnet restore
