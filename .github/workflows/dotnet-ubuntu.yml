@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04-arm
 
     steps:
     - name: Checkout
@@ -28,7 +28,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet publish -c Release -r linux-arm64 --self-contained -o ./publish
     
     - name: Fix libonigwrap directory
       run: cp UABEAvalonia/bin/Release/net8.0/runtimes/linux/native/libonigwrap.so UABEAvalonia/bin/Release/net8.0/runtimes/linux-x64/native/libonigwrap.so
@@ -40,4 +40,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: uabea-ubuntu
-        path: UABEAvalonia/bin/Release/net8.0
+        path: ./publish
