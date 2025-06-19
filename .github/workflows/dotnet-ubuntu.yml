@@ -23,6 +23,9 @@ jobs:
     
     - name: Remove TexToolWrap VC++ project
       run: dotnet sln UABEAvalonia.sln remove TexToolWrap/TexToolWrap.vcxproj
+    
+    - name: Clean
+		 run: dotnet clean
 
     - name: Restore
       run: dotnet restore
@@ -31,7 +34,7 @@ jobs:
       run: dotnet publish -c Release -r linux-arm64 --self-contained -o ./publish
     
     - name: Fix libonigwrap directory
-      run: cp UABEAvalonia/bin/Release/net8.0/runtimes/linux/native/libonigwrap.so UABEAvalonia/bin/Release/net8.0/runtimes/linux-x64/native/libonigwrap.so
+      run: cp UABEAvalonia/bin/Release/net8.0/runtimes/linux/native/libonigwrap.so ./publish/
     
     - name: Remove unused platforms
       run: find UABEAvalonia/bin/Release/net8.0/runtimes/* -maxdepth 0 ! -name linux-x64 -type d -exec rm -r {} +
