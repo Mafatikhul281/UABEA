@@ -31,7 +31,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet publish -c Release -r linux-arm64 --self-contained -o ./publish
+      run: dotnet publish UABEAvalonia/UABEAvalonia.csproj -c Release -r linux-arm64 --self-contained -o ./publish
     
     - name: Fix libonigwrap directory
       run: cp UABEAvalonia/bin/Release/net8.0/runtimes/linux/native/libonigwrap.so ./publish/
