@@ -28,12 +28,12 @@ jobs:
       run: dotnet publish UABEAvalonia/UABEAvalonia.csproj -c Release -r linux-arm64 -o ./publish
     
     - name: Fix libonigwrap directory
-      run: find UABEAvalonia/bin/Release/net8.0/ -name libunigwrap.so -type f -exec cp {} ./publish \;
+      run: find UABEAvalonia/bin/Release/net8.0/ -name libonigwrap.so -type f -exec cp {} ./publish \;
     
     - name: Remove unused platforms
       run: |
-        if [ -d "UABEAvalonia/bin/Release/net8.0/runtimes" ]; then
-          cp -r UABEAvalonia/bin/Release/net8.0/runtimes ./publish
+        if [ -d "UABEAvalonia/bin/Release/net8.0/linux-arm64" ]; then
+          cp -r UABEAvalonia/bin/Release/net8.0/linux-arm64 ./publish
         else
           ls UABEAvalonia/bin/Release/net8.0/
         fi
