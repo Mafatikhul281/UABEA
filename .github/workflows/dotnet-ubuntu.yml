@@ -21,9 +21,6 @@ jobs:
       with:
         dotnet-version: 8.0.x
     
-    - name: Remove TexToolWrap VC++ project
-      run: dotnet sln UABEAvalonia.sln remove TexToolWrap/TexToolWrap.vcxproj
-    
     - name: Clean
       run: dotnet clean
 
@@ -31,7 +28,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet publish UABEAvalonia/UABEAvalonia.csproj -c Release -r linux-arm64 --self-contained -o ./publish
+      run: dotnet publish UABEAvalonia/UABEAvalonia.csproj -c Release -r linux-arm64 -o ./publish
     
     - name: Fix libonigwrap directory
       run: find UABEAvalonia/bin/Release/net8.0/ -name libunigwrap.so -type f -exec cp {} ./publish \;
@@ -39,9 +36,9 @@ jobs:
     - name: Remove unused platforms
       run: |
         if [ -d "UABEAvalonia/bin/Release/net8.0/runtimes" ]; then
-          find UABEAvalonia/bin/Release/net8.0/runtimes/ -maxdepth 0 ! -name linux-x64 -type d -exec rm -r {} +
+          cp -r UABEAvalonia/bin/Release/net8.0/runtimes ./publish
         else
-          echo "Folder runtimes/ tidak ditemukan. Lewat."
+          ls UABEAvalonia/bin/Release/net8.0/
         fi
       
     - name: Upload
