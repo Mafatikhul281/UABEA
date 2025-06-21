@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;x64;x86;arm64</Platforms>
     <ApplicationIcon>uabeavalonia.ico</ApplicationIcon>
-    <PublishAot>false</PublishAot>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
